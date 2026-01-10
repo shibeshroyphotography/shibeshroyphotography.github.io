@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,18 @@
     <title>Shibesh Roy | Portrait & Fashion Photography</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* --- CSS VARIABLES & THEME SETUP --- */
+        /* --- CSS VARIABLES & THEME SETUP (PERMANENT DARK MODE) --- */
         :root {
-            /* Light Mode Palette */
-            --bg-body: #ffffff;
-            --bg-alt: #fcfcfc;
-            --bg-hero: #f4f2ee;
-            --bg-footer: #1a1a1a;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --text-footer: #ffffff;
-            --accent: #d4af37;
-            --border-color: #e5e5e5;
+            /* Dark Mode Palette */
+            --bg-body: #111111;
+            --bg-alt: #161616;
+            --bg-hero: #0a0a0a;
+            --bg-footer: #000000;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --text-footer: #888888;
+            --accent: #e0c060;
+            --border-color: #333333;
 
             /* Spacing & Layout */
             --container-width: 1200px;
@@ -34,18 +34,6 @@
 
             /* Transitions */
             --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        [data-theme="dark"] {
-            --bg-body: #111111;
-            --bg-alt: #161616;
-            --bg-hero: #0a0a0a;
-            --bg-footer: #000000;
-            --text-main: #f0f0f0;
-            --text-muted: #a0a0a0;
-            --text-footer: #888888;
-            --accent: #e0c060;
-            --border-color: #333333;
         }
 
         /* --- RESET & BASE STYLES --- */
@@ -160,12 +148,8 @@
         }
 
         .navbar.scrolled {
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="dark"] .navbar.scrolled {
             background-color: rgba(17, 17, 17, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
@@ -209,16 +193,6 @@
             opacity: 1;
         }
 
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 1.2rem;
-            margin-left: 1rem;
-            padding: 5px;
-            cursor: none;
-        }
-
         .menu-toggle {
             display: none;
         }
@@ -229,19 +203,11 @@
             overflow: hidden;
         }
 
-        [data-theme="light"] section:nth-of-type(odd) {
+        section:nth-of-type(odd) {
             background-color: var(--bg-alt);
         }
 
-        [data-theme="light"] section:nth-of-type(even) {
-            background-color: var(--bg-body);
-        }
-
-        [data-theme="dark"] section:nth-of-type(odd) {
-            background-color: var(--bg-alt);
-        }
-
-        [data-theme="dark"] section:nth-of-type(even) {
+        section:nth-of-type(even) {
             background-color: var(--bg-body);
         }
 
@@ -280,13 +246,9 @@
             width: 45%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            opacity: 0.4; /* Dark mode specific opacity */
             z-index: 1;
             will-change: transform;
-        }
-
-        [data-theme="dark"] .hero-bg-img {
-            opacity: 0.4;
         }
 
         .hero-content {
@@ -659,7 +621,7 @@
             margin-top: 1rem;
         }
 
-         .footer-email-link {
+        .footer-email-link {
             color: var(--text-footer);
             text-decoration: none;
             font-weight: 700;
@@ -781,11 +743,7 @@
             <a href="#skills" class="nav-link interactive">Skills</a>
             <a href="#achievements" class="nav-link interactive">Achievements</a>
             <a href="#testimonials" class="nav-link interactive">Testimonials</a>
-
-            <button id="themeToggle" class="theme-toggle interactive" aria-label="Toggle Dark Mode">
-                ◑
-            </button>
-        </div>
+            </div>
     </nav>
 
     <section id="hero">
@@ -1046,21 +1004,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- 1. THEME TOGGLE ---
-            const toggleBtn = document.getElementById('themeToggle');
-            const html = document.documentElement;
-            const savedTheme = localStorage.getItem('theme') || 'light';
-
-            html.setAttribute('data-theme', savedTheme);
-
-            toggleBtn.addEventListener('click', () => {
-                const current = html.getAttribute('data-theme');
-                const next = current === 'light' ? 'dark' : 'light';
-                html.setAttribute('data-theme', next);
-                localStorage.setItem('theme', next);
-            });
-
-            // --- 2. CUSTOM CURSOR ---
+            // --- 1. CUSTOM CURSOR ---
             const cursor = document.getElementById('cursor');
             const interactives = document.querySelectorAll('.interactive, a, button');
 
@@ -1079,7 +1023,7 @@
                 });
             }
 
-            // --- 3. STICKY NAV & SCROLL EFFECTS ---
+            // --- 2. STICKY NAV & SCROLL EFFECTS ---
             const navbar = document.getElementById('navbar');
             const heroBg = document.getElementById('heroBg');
 
@@ -1114,7 +1058,7 @@
                 });
             });
 
-            // --- 4. MOBILE MENU ---
+            // --- 3. MOBILE MENU ---
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
 
@@ -1131,7 +1075,7 @@
                 });
             });
 
-            // --- 5. LIGHTBOX ---
+            // --- 4. LIGHTBOX ---
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const closeBtn = lightbox.querySelector('.lightbox-close');
@@ -1162,7 +1106,7 @@
                 if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
             });
 
-            // --- 6. TESTIMONIALS SLIDER ---
+            // --- 5. TESTIMONIALS SLIDER ---
             const slides = document.querySelectorAll('.slide');
             const prevBtn = document.getElementById('prevSlide');
             const nextBtn = document.getElementById('nextSlide');
@@ -1209,7 +1153,7 @@
             sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
             sliderContainer.addEventListener('mouseleave', startAutoplay);
 
-            // --- 7. ANIMATE ACHIEVEMENTS/SKILLS ON SCROLL ---
+            // --- 6. ANIMATE ACHIEVEMENTS/SKILLS ON SCROLL ---
             const observerOptions = { threshold: 0.2 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1227,7 +1171,7 @@
                 observer.observe(el);
             });
 
-            // --- 8. TYPEWRITER EFFECT ---
+            // --- 7. TYPEWRITER EFFECT ---
             class TypeWriter {
                 constructor(txtElement, words, wait = 3000) {
                     this.txtElement = txtElement;
