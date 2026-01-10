@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of a Professional Wedding Portrait and Fashion Photographer. Minimalist, creative, and elegant.">
+    <title>Shibesh Roy | Portrait & Fashion Photography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES & THEME SETUP --- */
+        :root {
+            /* Light Mode Palette */
+            --bg-body: #ffffff;
+            --bg-alt: #fcfcfc;
+            --bg-hero: #f4f2ee;
+            --bg-footer: #1a1a1a;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --text-footer: #ffffff;
+            --accent: #d4af37;
+            --border-color: #e5e5e5;
+
+            /* Spacing & Layout */
+            --container-width: 1200px;
+            --header-height: 80px;
+            --section-spacing: 120px;
+            --radius-pill: 50px;
+
+            /* Typography */
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-display: "Times New Roman", Times, serif;
+
+            /* Transitions */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #111111;
+            --bg-alt: #161616;
+            --bg-hero: #0a0a0a;
+            --bg-footer: #000000;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --text-footer: #888888;
+            --accent: #e0c060;
+            --border-color: #333333;
+        }
+
+        /* --- RESET & BASE STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: none;
+        }
+
+        @media (pointer: coarse) {
+            * {
+                cursor: auto;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1,
+        h2 {
+            font-family: var(--font-display);
+            font-style: italic;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text-main);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        body.hovering #cursor {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+        }
+
+        @media (pointer: coarse) {
+            #cursor {
+                display: none;
+            }
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            padding: 0 2rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(100px);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .navbar.scrolled {
+            background-color: rgba(17, 17, 17, 0.9);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--text-main);
+            border-radius: var(--radius-pill);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-left: 1rem;
+            padding: 5px;
+            cursor: none;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: var(--section-spacing) 0;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] section:nth-of-type(odd) {
+            background-color: var(--bg-alt);
+        }
+
+        [data-theme="light"] section:nth-of-type(even) {
+            background-color: var(--bg-body);
+        }
+
+        [data-theme="dark"] section:nth-of-type(odd) {
+            background-color: var(--bg-alt);
+        }
+
+        [data-theme="dark"] section:nth-of-type(even) {
+            background-color: var(--bg-body);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+        }
+
+        /* --- HERO --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: var(--bg-hero) !important;
+            padding: 0;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        [data-theme="dark"] .hero-bg-img {
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding-left: 5%;
+        }
+
+        .hero-headline {
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- TYPING EFFECT CURSOR FIX --- */
+        .txt-type>.txt {
+            border-right: 1px solid var(--text-main);
+            padding-right: 2px;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: var(--text-main);
+            }
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 400px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--text-main);
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+
+        /* --- ABOUT ME --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-img {
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.5s ease;
+        }
+
+        .about-img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* --- EXPERIENCES --- */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 1px solid var(--border-color);
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--text-main);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-role {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--border-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            cursor: none;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-img {
+            max-height: 90vh;
+            max-width: 90vw;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2rem;
+            background: none;
+            border: none;
+        }
+
+        /* --- SKILLS --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+        }
+
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .progress-circle::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--text-main);
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            transform: rotate(-45deg);
+        }
+
+        .skill-name {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- ACHIEVEMENTS --- */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ach-count {
+            font-size: 3rem;
+            font-family: var(--font-display);
+            color: var(--accent);
+            display: block;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+            min-height: 300px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateX(50px);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
+        }
+
+        .quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .client-name {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .slider-controls {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+
+        /* --- FOOTER UPDATED --- */
+        footer {
+            background-color: var(--bg-footer) !important;
+            color: var(--text-footer);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Column Layout Logic */
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Specific style for the first column (Name/Email) to be wider */
+        .footer-col:first-child {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a:not(.footer-email-link) {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #f6f6f6;
+        }
+
+        .footer-col a:not(.footer-email-link):hover {
+            color: #fff;
+        }
+
+        /* --- FOOTER EMAIL --- */
+        .footer-email-container {
+            margin-top: 1rem;
+        }
+
+         .footer-email-link {
+            color: var(--text-footer);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        /* Animated underline effect */
+        .footer-email-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .footer-email-link:hover {
+            color: var(--accent);
+        }
+
+        .footer-email-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--bg-body);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: 0.3s ease;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-menu.mobile-open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: var(--text-main);
+            }
+
+            .hero-headline {
+                font-size: 3rem;
+            }
+
+            .hero-bg-img {
+                width: 100%;
+                opacity: 0.2;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            /* Adjust Footer for Mobile */
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-col:first-child {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="loading">
+
+    <div id="cursor"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="#hero" class="logo interactive" aria-label="Alex Vane Home">Shibesh Roy.</a>
+
+        <button class="menu-toggle interactive" aria-label="Toggle Menu" id="menuToggle">☰</button>
+
+        <div class="nav-menu" id="navMenu">
+            <a href="#about" class="nav-link interactive">About</a>
+            <a href="#experiences" class="nav-link interactive">Experiences</a>
+            <a href="#gallery" class="nav-link interactive">Gallery</a>
+            <a href="#skills" class="nav-link interactive">Skills</a>
+            <a href="#achievements" class="nav-link interactive">Achievements</a>
+            <a href="#testimonials" class="nav-link interactive">Testimonials</a>
+
+            <button id="themeToggle" class="theme-toggle interactive" aria-label="Toggle Dark Mode">
+                ◑
+            </button>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-headline">
+                    Capturing <br>
+                    <i>
+                        <span class="txt-type" data-wait="3000"
+                            data-words='["Intimacy", "Elegance", "Emotion", "Moment"]'></span>
+                    </i>
+                    & Style
+                </h1>
+
+                <p class="hero-sub">Specializing in high-end wedding portraiture and editorial fashion modelling
+                    photography.</p>
+                <a href="#gallery" class="btn-primary interactive">View Portfolio</a>
+            </div>
+        </div>
+        <img src="./SHIV6260-1.jpg" alt="Fashion Portrait" class="hero-bg-img" id="heroBg">
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span>Introduction</span>
+                <h2>Behind the Lens</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am Alex Vane, a photographer obsessed with the space between the staged and the raw. With over
+                        a decade behind the lens, I merge the storytelling of weddings with the crisp aesthetic of
+                        high-fashion editorials.</p>
+                    <p>My approach is minimalist yet deeply evocative. I believe every frame should look like a still
+                        from a movie, whether it’s a bride’s quiet moment before the vow or a model finding their light.
+                    </p>
+                </div>
+                <div class="about-image-wrapper">
+                    <img src="./DSC05202 copy.jpg" alt="Alex Vane Portrait" class="about-img interactive">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences">
+        <div class="container">
+            <div class="section-header">
+                <span>Timeline</span>
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">2023 - Present</span>
+                    <h3 class="timeline-role">Lead Photographer, Vogue Wedding Feature</h3>
+                    <p class="text-muted">Exclusive coverage for high-profile destination weddings across Europe.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2020 - 2023</span>
+                    <h3 class="timeline-role">Senior Editorial Shooter, Mode Agency</h3>
+                    <p class="text-muted">Directed and shot seasonal campaigns for luxury fashion brands.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2016 - 2020</span>
+                    <h3 class="timeline-role">Freelance Portrait Artist</h3>
+                    <p class="text-muted">Established a boutique studio focusing on minimalist portraiture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span>Portfolio</span>
+                <h2>Selected Works</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item interactive">
+                    <img src="./skill/SHIV8815-1.jpg" alt="Wedding Couple" loading="lazy"
+                        data-full="./skill/SHIV8815-1.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/SHIV8797-1.jpg" alt="Fashion Model Editorial" loading="lazy"
+                        data-full="./skill/SHIV8797-1.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/SHIV3575-1.jpg" alt="Bridal Portrait" loading="lazy"
+                        data-full="./skill/SHIV3575-1.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/SHIV3396-1-Recovered.jpg" alt="Studio Fashion" loading="lazy"
+                        data-full="./skill/SHIV3396-1-Recovered.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/IMG_4739.JPG" alt="Wedding Detail" loading="lazy"
+                        data-full="./skill/IMG_4739.JPG">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/35awards.jpg" alt="Editorial Outdoor" loading="lazy"
+                        data-full="./skill/35awards.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/IMG_4682.JPG" alt="Editorial Outdoor" loading="lazy"
+                        data-full="./skill/IMG_4682.JPG">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/Feel the Rain 35awards.jpg" alt="Editorial Outdoor" loading="lazy"
+                        data-full="./skill/Feel the Rain 35awards.jpg">
+                </div>
+                <div class="gallery-item interactive">
+                    <img src="./skill/IMG_4649.JPG" alt="Editorial Outdoor" loading="lazy"
+                        data-full="./skill/IMG_4649.JPG">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span>Expertise</span>
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="progress-circle" aria-label="95% skill">95%</div>
+                    <div class="skill-name">Art Direction</div>
+                </div>
+                <div class="skill-item">
+                    <div class="progress-circle" aria-label="90% skill">90%</div>
+                    <div class="skill-name">Lighting</div>
+                </div>
+                <div class="skill-item">
+                    <div class="progress-circle" aria-label="85% skill">85%</div>
+                    <div class="skill-name">Retouching</div>
+                </div>
+                <div class="skill-item">
+                    <div class="progress-circle" aria-label="95% skill">95%</div>
+                    <div class="skill-name">Visual Storytelling</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container">
+            <div class="section-header">
+                <span>Recognition</span>
+                <h2>Awards & Press</h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card interactive">
+                    <span class="ach-count">2024</span>
+                    <h3>Int. Wedding Photographer of Year</h3>
+                    <p class="text-muted">Shortlisted Finalist</p>
+                </div>
+                <div class="achievement-card interactive">
+                    <span class="ach-count">12</span>
+                    <h3>Magazine Covers</h3>
+                    <p class="text-muted">Vogue, Harper's, Elle</p>
+                </div>
+                <div class="achievement-card interactive">
+                    <span class="ach-count">50+</span>
+                    <h3>Weddings Captured</h3>
+                    <p class="text-muted">Across 10 different countries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span>Love Notes</span>
+                <h2>Client Words</h2>
+            </div>
+            <div class="slider-container" id="testimonialSlider" aria-live="polite">
+                <div class="slide active">
+                    <p class="quote">"Alex didn't just take photos; he captured the very soul of our wedding day. The
+                        images are hauntingly beautiful."</p>
+                    <p class="client-name">— Sarah & James, Wedding Clients</p>
+                </div>
+                <div class="slide">
+                    <p class="quote">"A visionary artist. Working with Alex on our Spring collection was effortless, and
+                        the results were magazine-ready instantly."</p>
+                    <p class="client-name">— Elena R., Creative Director at Mode</p>
+                </div>
+                <div class="slide">
+                    <p class="quote">"Minimalist perfection. He knows exactly how to use light to make a subject look
+                        powerful yet vulnerable."</p>
+                    <p class="client-name">— David T., Model</p>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="control-btn interactive" id="prevSlide" aria-label="Previous Slide">←</button>
+                    <button class="control-btn interactive" id="nextSlide" aria-label="Next Slide">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Shibesh Roy.</h4>
+                    <p>Malda | Kolkata | Mumbai</p>
+                    <div id="footer-email-container">
+                        <a href="mailto:shibeshroy@gmail.com" class="footer-email-link interactive">
+                            shibeshroy@gmail.com
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/shibesh_roy_photography/" target="_blank" class="interactive"
+                        style="display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.002zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.281.11-.705.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.599-.92c-.11-.281-.24-.705-.276-1.485-.038-.843-.047-1.096-.047-3.232 0-2.136.009-2.388.047-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.instagram.com/shibesh_roy_photography/" target="_blank" class="interactive"
+                        style="display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path d="M4.654 3c.461 0 .887.035 1.278.105.39.07.711.187.962.352.251.165.434.364.547.598.113.233.17.499.17.797 0 .589-.252 1.05-.757 1.381.56.355.856.877.856 1.569 0 .22-.043.418-.128.595-.086.176-.225.328-.417.454-.192.126-.43.22-.716.284-.287.063-.666.095-1.138.095H1.5v-6.23h3.154ZM3.025 7.936h1.694c.255 0 .451-.027.588-.08.137-.054.237-.13.299-.228.063-.098.094-.213.094-.344 0-.13-.032-.244-.097-.34-.064-.097-.166-.17-.306-.218-.14-.048-.325-.072-.554-.072H3.025v1.282Zm0 1.597v1.463h1.868c.277 0 .493-.028.648-.083.155-.055.27-.135.346-.24.075-.105.113-.23.113-.374 0-.148-.04-.27-.122-.366-.081-.096-.195-.168-.342-.216-.147-.048-.347-.072-.601-.072H3.025Zm6.388-3.09h3.697v-.94H9.413v.94Zm4.228 3.518c0-.589-.108-1.066-.323-1.433-.215-.366-.514-.647-.898-.843-.383-.196-.84-.294-1.371-.294-.526 0-.98.098-1.36.294-.38.196-.682.483-.907.86-.224.377-.336.837-.336 1.38s.109 1.002.328 1.379c.219.376.516.658.89.846.375.187.822.281 1.342.281.656 0 1.189-.148 1.599-.443.409-.296.673-.702.793-1.218h-1.298c-.066.234-.196.415-.391.543-.195.128-.44.192-.734.192-.305 0-.547-.072-.725-.216-.178-.144-.287-.35-.326-.618h3.917v-.218Zm-2.696-1.12c.036-.253.137-.449.303-.588.166-.139.388-.208.666-.208.272 0 .488.068.648.204.16.136.257.332.29.592H10.945Z"/>     
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Sitemap</h4>
+                    <a href="#about" class="interactive">About</a>
+                    <a href="#gallery" class="interactive">Portfolio</a>
+                    <a href="#testimonials" class="interactive">Reviews</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 Shibesh Roy Photography. All Rights Reserved.
+                <div class="developer-credit">
+                    Designed & Developed by <a href="https://enigmasaikat.github.io/" class="interactive">Saikat Das</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+        <button class="lightbox-close interactive" aria-label="Close Lightbox">×</button>
+        <img src="" alt="Full view" class="lightbox-img">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. THEME TOGGLE ---
+            const toggleBtn = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            const savedTheme = localStorage.getItem('theme') || 'light';
+
+            html.setAttribute('data-theme', savedTheme);
+
+            toggleBtn.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+            });
+
+            // --- 2. CUSTOM CURSOR ---
+            const cursor = document.getElementById('cursor');
+            const interactives = document.querySelectorAll('.interactive, a, button');
+
+            // Only active on non-touch
+            if (window.matchMedia("(pointer: fine)").matches) {
+                document.addEventListener('mousemove', (e) => {
+                    requestAnimationFrame(() => {
+                        cursor.style.left = e.clientX + 'px';
+                        cursor.style.top = e.clientY + 'px';
+                    });
+                });
+
+                interactives.forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+                });
+            }
+
+            // --- 3. STICKY NAV & SCROLL EFFECTS ---
+            const navbar = document.getElementById('navbar');
+            const heroBg = document.getElementById('heroBg');
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                // Navbar shadow
+                if (scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+
+                // Simple Parallax for Hero
+                if (scrollY < window.innerHeight) {
+                    heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+                }
+
+                // Active Link Highlight
+                const sections = document.querySelectorAll('section');
+                sections.forEach(sec => {
+                    const top = window.scrollY;
+                    const offset = sec.offsetTop - 100;
+                    const height = sec.offsetHeight;
+                    const id = sec.getAttribute('id');
+
+                    if (top >= offset && top < offset + height) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').includes(id)) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- 4. MOBILE MENU ---
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('mobile-open');
+                menuToggle.textContent = navMenu.classList.contains('mobile-open') ? '✕' : '☰';
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.addEventListener('click', () => {
+                    navMenu.classList.remove('mobile-open');
+                    menuToggle.textContent = '☰';
+                });
+            });
+
+            // --- 5. LIGHTBOX ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+
+            galleryItems.forEach(img => {
+                img.addEventListener('click', () => {
+                    const fullSrc = img.getAttribute('data-full');
+                    lightboxImg.src = fullSrc;
+                    lightbox.classList.add('active');
+                    // Focus trap for accessibility
+                    closeBtn.focus();
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+            });
+
+            // --- 6. TESTIMONIALS SLIDER ---
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            const showSlide = (index) => {
+                slides.forEach((s, i) => s.classList.remove('active'));
+                slides[index].classList.add('active');
+            };
+
+            const nextSlide = () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            };
+
+            const prevSlide = () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            };
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetAutoplay();
+            });
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetAutoplay();
+            });
+
+            const startAutoplay = () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            };
+
+            const resetAutoplay = () => {
+                clearInterval(slideInterval);
+                startAutoplay();
+            };
+
+            startAutoplay();
+
+            // Pause on hover
+            const sliderContainer = document.getElementById('testimonialSlider');
+            sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            sliderContainer.addEventListener('mouseleave', startAutoplay);
+
+            // --- 7. ANIMATE ACHIEVEMENTS/SKILLS ON SCROLL ---
+            const observerOptions = { threshold: 0.2 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.skill-item, .achievement-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // --- 8. TYPEWRITER EFFECT ---
+            class TypeWriter {
+                constructor(txtElement, words, wait = 3000) {
+                    this.txtElement = txtElement;
+                    this.words = words;
+                    this.txt = '';
+                    this.wordIndex = 0;
+                    this.wait = parseInt(wait, 10);
+                    this.type();
+                    this.isDeleting = false;
+                }
+
+                type() {
+                    // Current index of word
+                    const current = this.wordIndex % this.words.length;
+                    // Get full text of current word
+                    const fullTxt = this.words[current];
+
+                    // Check if deleting
+                    if (this.isDeleting) {
+                        // Remove char
+                        this.txt = fullTxt.substring(0, this.txt.length - 1);
+                    } else {
+                        // Add char
+                        this.txt = fullTxt.substring(0, this.txt.length + 1);
+                    }
+
+                    // Insert txt into element
+                    this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+                    // Initial Type Speed
+                    let typeSpeed = 200;
+
+                    if (this.isDeleting) {
+                        typeSpeed /= 2;
+                    }
+
+                    // If word is complete
+                    if (!this.isDeleting && this.txt === fullTxt) {
+                        // Make pause at end
+                        typeSpeed = this.wait;
+                        // Set delete to true
+                        this.isDeleting = true;
+                    } else if (this.isDeleting && this.txt === '') {
+                        this.isDeleting = false;
+                        // Move to next word
+                        this.wordIndex++;
+                        // Pause before start typing
+                        typeSpeed = 500;
+                    }
+
+                    setTimeout(() => this.type(), typeSpeed);
+                }
+            }
+
+            // Init TypeWriter
+            const txtElement = document.querySelector('.txt-type');
+            const words = JSON.parse(txtElement.getAttribute('data-words'));
+            const wait = txtElement.getAttribute('data-wait');
+            // Init TypeWriter
+            new TypeWriter(txtElement, words, wait);
+        });
+    </script>
+</body>
+
+</html>
