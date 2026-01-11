@@ -4,10 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="description"
+        content="Portfolio of a Professional Wedding Portrait and Fashion Photographer. Minimalist, creative, and elegant."> -->
+    <title>Shibesh Roy | Wedding, Portrait & Fashion Photographer in Malda & Kolkata</title>
     <meta name="description"
-        content="Portfolio of a Professional Wedding Portrait and Fashion Photographer. Minimalist, creative, and elegant.">
-    <title>Shibesh Roy | Portrait & Fashion Photography</title>
+        content="Professional photography portfolio of Shibesh Roy. Specializing in cinematic wedding stories, high-fashion editorial, and minimalist portraits. Serving Malda, Kolkata, Mumbai, and destination weddings.">
+    <meta name="keywords"
+        content="Shibesh Roy, Photographer Malda, Wedding Photographer Kolkata, Fashion Photography India, Portrait Photographer, Portrait Shoot, Outdoor Shoot, Indoor Shoot, Studio Shoot, Minimalist Photography, Editorial Shoots">
+    <meta property="og:title" content="Shibesh Roy Photography | Capturing Elegance">
+    <meta property="og:description"
+        content="Cinematic wedding and fashion photography based in West Bengal. View the portfolio.">
+    <meta property="og:image"
+        content="https://shibeshroyphotography.github.io/bengali-wedding-couple-portrait-malda-sunset.jpg">
+    <meta property="og:url" content="https://shibeshroyphotography.github.io/">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PhotographyBusiness",
+      "name": "Shibesh Roy Photography",
+      "image": "https://shibeshroyphotography.github.io/bengali-wedding-couple-portrait-malda-sunset.jpg",
+      "telephone": "+91-8637593484", 
+      "email": "shibeshroyphotography@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Malda",
+        "addressRegion": "West Bengal",
+        "addressCountry": "IN"
+      },
+      "url": "https://shibeshroyphotography.github.io/",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "07:00",
+        "closes": "23:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/shibesh_roy_photography/"
+      ]
+    }
+    </script>
     <style>
         /* --- CSS VARIABLES & THEME SETUP (PERMANENT DARK MODE) --- */
         :root {
@@ -246,7 +286,8 @@
             width: 45%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4; /* Dark mode specific opacity */
+            opacity: 0.4;
+            /* Dark mode specific opacity */
             z-index: 1;
             will-change: transform;
         }
@@ -662,6 +703,40 @@
             color: #555;
         }
 
+        /* Reusable Hover Animation Class */
+        .hover-underline-animation {
+            color: var(--accent);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            /* Ensures the custom cursor works */
+        }
+
+        /* The Animated Line */
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            /* Matches footer thickness */
+            bottom: -2px;
+            /* Distance from text */
+            left: 0;
+            background-color: var(--accent);
+
+            /* Animation Logic */
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        /* Hover State */
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
         /* --- MEDIA QUERIES --- */
         @media (max-width: 768px) {
             .navbar {
@@ -732,7 +807,7 @@
     <div id="cursor"></div>
 
     <nav class="navbar" id="navbar">
-        <a href="#hero" class="logo interactive" aria-label="Alex Vane Home">Shibesh Roy.</a>
+        <a href="#hero" class="logo interactive" aria-label="shibesh Roy Photography Home">Shibesh Roy.</a>
 
         <button class="menu-toggle interactive" aria-label="Toggle Menu" id="menuToggle">☰</button>
 
@@ -743,7 +818,7 @@
             <a href="#skills" class="nav-link interactive">Skills</a>
             <a href="#achievements" class="nav-link interactive">Achievements</a>
             <a href="#testimonials" class="nav-link interactive">Testimonials</a>
-            </div>
+        </div>
     </nav>
 
     <section id="hero">
@@ -763,7 +838,8 @@
                 <a href="#gallery" class="btn-primary interactive">View Portfolio</a>
             </div>
         </div>
-        <img src="./SHIV6260-1.jpg" alt="Fashion Portrait" class="hero-bg-img" id="heroBg">
+        <img src="./bengali-wedding-couple-portrait-malda-sunset.jpg"
+            alt="bengali-wedding-couple-portrait-malda-kolkata-mumbai" class="hero-bg-img" id="heroBg">
     </section>
 
     <section id="about">
@@ -774,11 +850,21 @@
             </div>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>I am Alex Vane, a photographer obsessed with the space between the staged and the raw. With over
-                        a decade behind the lens, I merge the storytelling of weddings with the crisp aesthetic of
-                        high-fashion editorials.</p>
-                    <p>My approach is minimalist yet deeply evocative. I believe every frame should look like a still
-                        from a movie, whether it’s a bride’s quiet moment before the vow or a model finding their light.
+                    <p>
+                        I am <strong>Shibesh Roy</strong>, a professional <strong>Wedding and Fashion
+                            Photographer</strong> based in Malda and Kolkata. My work exists at the intersection of raw,
+                        candid emotion and high-end <strong>editorial aesthetics</strong>.
+                    </p>
+                    <p>
+                        With over a decade of experience, I specialize in <strong>cinematic visual
+                            storytelling</strong>. Whether it is the quiet intimacy of a <strong>destination
+                            wedding</strong> or the bold structure of a <strong>minimalist fashion shoot</strong>, my
+                        goal is to make every image look like a still from a movie. I don't just take photos; I curate
+                        moments that feel timeless, authentic, and effortlessly stylish.
+                    </p>
+                    <p>
+                        <a href="#experiences" class="hover-underline-animation">See my journey</a> or
+                        <a href="#footer" class="hover-underline-animation">book a session</a> in West Bengal or Mumbai.
                     </p>
                 </div>
                 <div class="about-image-wrapper">
@@ -944,6 +1030,72 @@
             </div>
         </div>
     </section>
+    <section id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span>Information</span>
+                <h2>Common Questions</h2>
+            </div>
+            
+            <style>
+                /* Simple FAQ Styles */
+                details {
+                    background: var(--bg-alt);
+                    margin-bottom: 1rem;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 1px solid var(--border-color);
+                }
+                summary {
+                    padding: 1.5rem;
+                    cursor: pointer;
+                    font-weight: 600;
+                    list-style: none; /* Hide default triangle */
+                    position: relative;
+                }
+                summary::after {
+                    content: '+';
+                    position: absolute;
+                    right: 1.5rem;
+                    font-weight: 300;
+                    font-size: 1.5rem;
+                }
+                details[open] summary::after {
+                    content: '-';
+                }
+                .faq-content {
+                    padding: 0 1.5rem 1.5rem;
+                    color: var(--text-muted);
+                    font-size: 0.95rem;
+                }
+            </style>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                
+                <details>
+                    <summary>Do you travel for destination weddings outside Malda or Kolkata?</summary>
+                    <div class="faq-content">
+                        Yes. While I am based in Malda and Kolkata, I frequently travel for destination weddings across India, including Mumbai, Delhi, and Jaipur. Contact me to discuss travel packages.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>What is your photography style?</summary>
+                    <div class="faq-content">
+                        My style is a blend of <strong>Cinematic</strong> and <strong>Candid Photography</strong>. I focus on natural lighting, minimalist compositions, and capturing unposed, authentic emotions, similar to high-fashion editorial spreads.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Do you provide high-end retouching and albums?</summary>
+                    <div class="faq-content">
+                        Absolutely. All delivered images undergo professional color grading and skin retouching to ensure a magazine-quality finish. We also offer premium handcrafted albums for wedding clients.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
 
     <footer id="footer">
         <div class="container">
@@ -974,7 +1126,8 @@
                         style="display: flex; align-items: center; gap: 8px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             viewBox="0 0 16 16">
-                            <path d="M4.654 3c.461 0 .887.035 1.278.105.39.07.711.187.962.352.251.165.434.364.547.598.113.233.17.499.17.797 0 .589-.252 1.05-.757 1.381.56.355.856.877.856 1.569 0 .22-.043.418-.128.595-.086.176-.225.328-.417.454-.192.126-.43.22-.716.284-.287.063-.666.095-1.138.095H1.5v-6.23h3.154ZM3.025 7.936h1.694c.255 0 .451-.027.588-.08.137-.054.237-.13.299-.228.063-.098.094-.213.094-.344 0-.13-.032-.244-.097-.34-.064-.097-.166-.17-.306-.218-.14-.048-.325-.072-.554-.072H3.025v1.282Zm0 1.597v1.463h1.868c.277 0 .493-.028.648-.083.155-.055.27-.135.346-.24.075-.105.113-.23.113-.374 0-.148-.04-.27-.122-.366-.081-.096-.195-.168-.342-.216-.147-.048-.347-.072-.601-.072H3.025Zm6.388-3.09h3.697v-.94H9.413v.94Zm4.228 3.518c0-.589-.108-1.066-.323-1.433-.215-.366-.514-.647-.898-.843-.383-.196-.84-.294-1.371-.294-.526 0-.98.098-1.36.294-.38.196-.682.483-.907.86-.224.377-.336.837-.336 1.38s.109 1.002.328 1.379c.219.376.516.658.89.846.375.187.822.281 1.342.281.656 0 1.189-.148 1.599-.443.409-.296.673-.702.793-1.218h-1.298c-.066.234-.196.415-.391.543-.195.128-.44.192-.734.192-.305 0-.547-.072-.725-.216-.178-.144-.287-.35-.326-.618h3.917v-.218Zm-2.696-1.12c.036-.253.137-.449.303-.588.166-.139.388-.208.666-.208.272 0 .488.068.648.204.16.136.257.332.29.592H10.945Z"/>     
+                            <path
+                                d="M4.654 3c.461 0 .887.035 1.278.105.39.07.711.187.962.352.251.165.434.364.547.598.113.233.17.499.17.797 0 .589-.252 1.05-.757 1.381.56.355.856.877.856 1.569 0 .22-.043.418-.128.595-.086.176-.225.328-.417.454-.192.126-.43.22-.716.284-.287.063-.666.095-1.138.095H1.5v-6.23h3.154ZM3.025 7.936h1.694c.255 0 .451-.027.588-.08.137-.054.237-.13.299-.228.063-.098.094-.213.094-.344 0-.13-.032-.244-.097-.34-.064-.097-.166-.17-.306-.218-.14-.048-.325-.072-.554-.072H3.025v1.282Zm0 1.597v1.463h1.868c.277 0 .493-.028.648-.083.155-.055.27-.135.346-.24.075-.105.113-.23.113-.374 0-.148-.04-.27-.122-.366-.081-.096-.195-.168-.342-.216-.147-.048-.347-.072-.601-.072H3.025Zm6.388-3.09h3.697v-.94H9.413v.94Zm4.228 3.518c0-.589-.108-1.066-.323-1.433-.215-.366-.514-.647-.898-.843-.383-.196-.84-.294-1.371-.294-.526 0-.98.098-1.36.294-.38.196-.682.483-.907.86-.224.377-.336.837-.336 1.38s.109 1.002.328 1.379c.219.376.516.658.89.846.375.187.822.281 1.342.281.656 0 1.189-.148 1.599-.443.409-.296.673-.702.793-1.218h-1.298c-.066.234-.196.415-.391.543-.195.128-.44.192-.734.192-.305 0-.547-.072-.725-.216-.178-.144-.287-.35-.326-.618h3.917v-.218Zm-2.696-1.12c.036-.253.137-.449.303-.588.166-.139.388-.208.666-.208.272 0 .488.068.648.204.16.136.257.332.29.592H10.945Z" />
                         </svg>
                         <span>Instagram</span>
                     </a>
