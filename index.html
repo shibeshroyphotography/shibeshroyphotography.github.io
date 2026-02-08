@@ -799,6 +799,315 @@
                 min-width: 100%;
             }
         }
+
+        /* --- CREATIVE JOURNEY (CENTERED) --- */
+
+        #creative-journey {
+            position: relative;
+            padding-bottom: 6rem;
+        }
+
+        .creative-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* The Central Line (Spine) */
+        .creative-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 1px;
+            height: 100%;
+            background: var(--border-color);
+            /* Faint grey line */
+            transform: translateX(-50%);
+        }
+
+        /* Item Container */
+        .creative-item {
+            position: relative;
+            width: 50%;
+            padding: 0 3rem;
+            margin-bottom: 4rem;
+            clear: both;
+        }
+
+        /* Left Items */
+        .creative-item.left {
+            float: left;
+            text-align: right;
+            padding-right: 3rem;
+            padding-left: 0;
+        }
+
+        .creative-item.left .creative-date {
+            right: -6.5rem;
+            /* Position "Scene" label near center line */
+        }
+
+        /* Right Items */
+        .creative-item.right {
+            float: right;
+            text-align: left;
+            padding-left: 3rem;
+            padding-right: 0;
+            margin-top: 4rem;
+            /* Stagger effect */
+        }
+
+        .creative-item.right .creative-date {
+            left: -6.5rem;
+            /* Position "Scene" label near center line */
+        }
+
+        /* The Center Dot */
+        .creative-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            /* Gold Dot */
+            border-radius: 50%;
+            border: 2px solid var(--bg-body);
+            /* Gap effect */
+            z-index: 2;
+        }
+
+        /* Dot Positioning */
+        .creative-item.left::after {
+            right: -6px;
+            /* Half of width to center on line */
+        }
+
+        .creative-item.right::after {
+            left: -6px;
+        }
+
+        /* --- TYPOGRAPHY & VISUALS --- */
+
+        /* "Scene 01" Text */
+        .creative-date {
+            position: absolute;
+            top: -5px;
+            font-family: var(--font-display);
+            color: var(--accent);
+            font-style: italic;
+            font-size: 1.1rem;
+            width: 100px;
+            text-align: center;
+        }
+
+        .creative-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Polaroid Style Image Wrapper */
+        .polaroid-wrapper {
+            background: #fff;
+            padding: 10px 10px 30px 10px;
+            /* Thicker bottom like a polaroid */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: rotate(-3deg);
+            transition: transform 0.4s ease;
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .polaroid-wrapper img {
+            filter: grayscale(20%);
+            /* Artistic touch */
+            transition: filter 0.4s ease;
+        }
+
+        .creative-content:hover .polaroid-wrapper {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+        }
+
+        .creative-content:hover .polaroid-wrapper img {
+            filter: grayscale(0%);
+        }
+
+        /* Clearfix */
+        .creative-timeline::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* --- MOBILE RESPONSIVENESS (Collapses to Left Side) --- */
+        @media (max-width: 768px) {
+
+            /* Move line to left */
+            .creative-timeline::before {
+                left: 20px;
+            }
+
+            .creative-item {
+                width: 100%;
+                float: none;
+                padding-left: 4rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+                margin-top: 0 !important;
+            }
+
+            /* Reset Dot Positions */
+            .creative-item.left::after,
+            .creative-item.right::after {
+                left: 14px;
+                right: auto;
+            }
+
+            /* Move Date/Scene text to top of content */
+            .creative-date {
+                position: relative;
+                top: auto;
+                left: auto !important;
+                right: auto !important;
+                text-align: left;
+                margin-bottom: 0.5rem;
+                width: auto;
+            }
+
+            .polaroid-wrapper {
+                transform: rotate(0deg);
+                width: 100%;
+            }
+        }
+
+        /* --- SCATTER COLLAGE (One Scene, Multiple Photos) --- */
+
+        /* --- SCATTER COLLAGE (One Scene, Multiple Photos) --- */
+
+        .scatter-gallery {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+
+            /* FIX 1: Increased height to hold vertical images */
+            height: 450px;
+
+            /* FIX 2: Added more space below so hover effects don't overlap text */
+            margin: 0 auto 4rem auto;
+
+            cursor: pointer;
+        }
+
+        .scatter-photo {
+            position: absolute;
+            background: #fff;
+            padding: 8px 8px 25px 8px;
+            /* Polaroid Border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 60%;
+            /* Photos are smaller than full container width */
+        }
+
+        .scatter-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(10%);
+            /* Slight film look */
+        }
+
+        /* --- POSITIONING THE 3 PHOTOS --- */
+
+        /* 1. Back Photo (Top Left) */
+        .photo-back {
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transform: rotate(-6deg);
+            width: 50%;
+        }
+
+        /* 2. Main Photo (Center) */
+        .photo-main {
+            top: 40px;
+            left: 20%;
+            /* Centered horizontally */
+            z-index: 2;
+            transform: rotate(2deg);
+            width: 65%;
+            /* Largest photo */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            /* Deeper shadow */
+        }
+
+        /* 3. Front Photo (Bottom Right) */
+        .photo-front {
+            bottom: 20px;
+            right: 0;
+            z-index: 3;
+            transform: rotate(-3deg);
+            width: 55%;
+        }
+
+        /* --- INTERACTION: THE "EXPLODE" EFFECT --- */
+        /* When hovering over the container, photos spread out */
+
+        .creative-content:hover .photo-back {
+            transform: translate(-30px, -20px) rotate(-12deg) scale(1.05);
+            z-index: 4;
+            /* Brings it forward slightly if you want */
+        }
+
+        .creative-content:hover .photo-main {
+            transform: scale(1.1);
+            /* Hero shot grows */
+            z-index: 5;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .creative-content:hover .photo-front {
+            transform: translate(30px, 20px) rotate(5deg) scale(1.05);
+            z-index: 6;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .scatter-gallery {
+                height: auto;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                /* Horizontal scroll if photos are too wide */
+                gap: 10px;
+                padding-bottom: 20px;
+                max-width: 100%;
+            }
+
+            .scatter-photo {
+                position: relative;
+                /* Stop absolute positioning */
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                width: 140px;
+                /* Fixed width for scroll items */
+                flex-shrink: 0;
+                margin: 0;
+            }
+
+            /* Hide scrollbar for cleaner look */
+            .scatter-gallery::-webkit-scrollbar {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -896,6 +1205,90 @@
                     <h3 class="timeline-role">Freelance Portrait Artist</h3>
                     <p class="text-muted">Established a boutique studio focusing on minimalist portraiture.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="creative-journey">
+        <div class="container">
+            <div class="section-header">
+                <span>The Script</span>
+                <h2>Director's Cut</h2>
+            </div>
+
+            <div class="creative-timeline">
+
+                <div class="creative-item left">
+                    <div class="creative-date">Scene 01</div>
+                    <div class="creative-content interactive">
+                        <div class="polaroid-wrapper">
+                            <img src="./skill/IMG_4682.JPG" alt="The Beginning" loading="lazy">
+                        </div>
+                        <h3>The Obsession</h3>
+                        <p class="text-muted">
+                            It started with cinema. I didn't want to just watch the movie; I wanted to <i>stop</i> it. I
+                            spent hours analyzing how light hit a protagonist's face. I realized that a single frame
+                            could hold more emotion than a thousand words.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="creative-item right">
+                    <div class="creative-date">Scene 02</div>
+
+                    <div class="creative-content">
+
+                        <div class="scatter-gallery interactive">
+                            <div class="scatter-photo photo-back">
+                                <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                            </div>
+
+                            <div class="scatter-photo photo-main">
+                                <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                            </div>
+
+                            <div class="scatter-photo photo-front">
+                                <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                            </div>
+                        </div>
+
+                        <h3>Breaking The Script</h3>
+                        <p class="text-muted">
+                            2018. The rain didn't just wash away the décor; it washed away the hesitation. I captured
+                            the chaos, the laughter, and the ruined makeup. Looking at these three frames, I realized
+                            perfection is boring.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="creative-item left">
+                    <div class="creative-date">Scene 02</div>
+
+                    <div class="creative-content">
+
+                        <div class="scatter-gallery interactive">
+                            <div class="scatter-photo photo-back">
+                                <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                            </div>
+
+                            <div class="scatter-photo photo-main">
+                                <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                            </div>
+
+                            <div class="scatter-photo photo-front">
+                                <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                            </div>
+                        </div>
+
+                        <h3>Breaking The Script</h3>
+                        <p class="text-muted">
+                            2018. The rain didn't just wash away the décor; it washed away the hesitation. I captured
+                            the chaos, the laughter, and the ruined makeup. Looking at these three frames, I realized
+                            perfection is boring.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1036,7 +1429,7 @@
                 <span>Information</span>
                 <h2>Common Questions</h2>
             </div>
-            
+
             <style>
                 /* Simple FAQ Styles */
                 details {
@@ -1046,13 +1439,16 @@
                     overflow: hidden;
                     border: 1px solid var(--border-color);
                 }
+
                 summary {
                     padding: 1.5rem;
                     cursor: pointer;
                     font-weight: 600;
-                    list-style: none; /* Hide default triangle */
+                    list-style: none;
+                    /* Hide default triangle */
                     position: relative;
                 }
+
                 summary::after {
                     content: '+';
                     position: absolute;
@@ -1060,9 +1456,11 @@
                     font-weight: 300;
                     font-size: 1.5rem;
                 }
+
                 details[open] summary::after {
                     content: '-';
                 }
+
                 .faq-content {
                     padding: 0 1.5rem 1.5rem;
                     color: var(--text-muted);
@@ -1071,25 +1469,29 @@
             </style>
 
             <div style="max-width: 800px; margin: 0 auto;">
-                
+
                 <details>
                     <summary>Do you travel for destination weddings outside Malda or Kolkata?</summary>
                     <div class="faq-content">
-                        Yes. While I am based in Malda and Kolkata, I frequently travel for destination weddings across India, including Mumbai, Delhi, and Jaipur. Contact me to discuss travel packages.
+                        Yes. While I am based in Malda and Kolkata, I frequently travel for destination weddings across
+                        India, including Mumbai, Delhi, and Jaipur. Contact me to discuss travel packages.
                     </div>
                 </details>
 
                 <details>
                     <summary>What is your photography style?</summary>
                     <div class="faq-content">
-                        My style is a blend of <strong>Cinematic</strong> and <strong>Candid Photography</strong>. I focus on natural lighting, minimalist compositions, and capturing unposed, authentic emotions, similar to high-fashion editorial spreads.
+                        My style is a blend of <strong>Cinematic</strong> and <strong>Candid Photography</strong>. I
+                        focus on natural lighting, minimalist compositions, and capturing unposed, authentic emotions,
+                        similar to high-fashion editorial spreads.
                     </div>
                 </details>
 
                 <details>
                     <summary>Do you provide high-end retouching and albums?</summary>
                     <div class="faq-content">
-                        Absolutely. All delivered images undergo professional color grading and skin retouching to ensure a magazine-quality finish. We also offer premium handcrafted albums for wedding clients.
+                        Absolutely. All delivered images undergo professional color grading and skin retouching to
+                        ensure a magazine-quality finish. We also offer premium handcrafted albums for wedding clients.
                     </div>
                 </details>
 
