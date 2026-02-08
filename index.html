@@ -48,7 +48,32 @@
       ]
     }
     </script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <style>
+        /* --- LENIS SMOOTH SCROLL SETUP --- */
+
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+            /* Force auto so Lenis handles the smoothness */
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
         /* --- CSS VARIABLES & THEME SETUP (PERMANENT DARK MODE) --- */
         :root {
             /* Dark Mode Palette */
@@ -1108,6 +1133,60 @@
                 display: none;
             }
         }
+
+        /* --- SCROLL INDICATORS (Mobile Only) --- */
+
+        .scatter-wrapper {
+            position: relative;
+            /* Anchor for arrows */
+        }
+
+        /* Default: Hidden on Desktop */
+        .scroll-indicator {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .scroll-indicator {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 32px;
+                height: 32px;
+                background: rgba(0, 0, 0, 0.6);
+                /* Semi-transparent dark bg */
+                color: #fff;
+                border-radius: 50%;
+                z-index: 20;
+                cursor: pointer;
+                opacity: 1;
+                transition: opacity 0.3s ease, transform 0.2s ease;
+                backdrop-filter: blur(4px);
+            }
+
+            .scroll-indicator:active {
+                transform: translateY(-50%) scale(0.9);
+            }
+
+            .scroll-indicator.left {
+                left: -10px;
+                /* Adjust based on your margins */
+            }
+
+            .scroll-indicator.right {
+                right: -10px;
+            }
+
+            /* Class to hide arrows when not needed */
+            .scroll-indicator.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
     </style>
 </head>
 
@@ -1238,20 +1317,33 @@
 
                     <div class="creative-content">
 
-                        <div class="scatter-gallery interactive">
-                            <div class="scatter-photo photo-back">
-                                <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                        <div class="scatter-wrapper">
+                            <div class="scroll-indicator left hidden" aria-label="Scroll Left">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
                             </div>
 
-                            <div class="scatter-photo photo-main">
-                                <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                            <div class="scatter-gallery interactive">
+                                <div class="scatter-photo photo-back">
+                                    <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                                </div>
+                                <div class="scatter-photo photo-main">
+                                    <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                                </div>
+                                <div class="scatter-photo photo-front">
+                                    <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                                </div>
                             </div>
 
-                            <div class="scatter-photo photo-front">
-                                <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                            <div class="scroll-indicator right" aria-label="Scroll Right">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 18l6-6-6-6" />
+                                </svg>
                             </div>
                         </div>
-
                         <h3>Breaking The Script</h3>
                         <p class="text-muted">
                             2018. The rain didn't just wash away the décor; it washed away the hesitation. I captured
@@ -1260,36 +1352,49 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="creative-item left">
-                    <div class="creative-date">Scene 02</div>
+                    <div class="creative-date">Scene 03</div>
 
                     <div class="creative-content">
 
-                        <div class="scatter-gallery interactive">
-                            <div class="scatter-photo photo-back">
-                                <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                        <div class="scatter-wrapper">
+                            <div class="scroll-indicator left hidden" aria-label="Scroll Left">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6" />
+                                </svg>
                             </div>
 
-                            <div class="scatter-photo photo-main">
-                                <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                            <div class="scatter-gallery interactive">
+                                <div class="scatter-photo photo-back">
+                                    <img src="./skill/IMG_4739.JPG" alt="Wedding Details" loading="lazy">
+                                </div>
+                                <div class="scatter-photo photo-main">
+                                    <img src="./skill/SHIV8797-1.jpg" alt="The Monsoon Bride" loading="lazy">
+                                </div>
+                                <div class="scatter-photo photo-front">
+                                    <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                                </div>
                             </div>
 
-                            <div class="scatter-photo photo-front">
-                                <img src="./skill/IMG_4649.JPG" alt="Raw Emotion" loading="lazy">
+                            <div class="scroll-indicator right" aria-label="Scroll Right">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 18l6-6-6-6" />
+                                </svg>
                             </div>
                         </div>
-
-                        <h3>Breaking The Script</h3>
-                        <p class="text-muted">
-                            2018. The rain didn't just wash away the décor; it washed away the hesitation. I captured
-                            the chaos, the laughter, and the ruined makeup. Looking at these three frames, I realized
-                            perfection is boring.
-                        </p>
                     </div>
+                    <h3>Breaking The Script</h3>
+                    <p class="text-muted">
+                        2018. The rain didn't just wash away the décor; it washed away the hesitation. I captured
+                        the chaos, the laughter, and the ruined makeup. Looking at these three frames, I realized
+                        perfection is boring.
+                    </p>
                 </div>
-
             </div>
+
+        </div>
         </div>
     </section>
 
@@ -1726,6 +1831,7 @@
                 observer.observe(el);
             });
 
+
             // --- 7. TYPEWRITER EFFECT ---
             class TypeWriter {
                 constructor(txtElement, words, wait = 3000) {
@@ -1787,6 +1893,271 @@
             const wait = txtElement.getAttribute('data-wait');
             // Init TypeWriter
             new TypeWriter(txtElement, words, wait);
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 0. INITIALIZE LENIS (Cinematic Smooth Scroll) ---
+            const lenis = new Lenis({
+                duration: 1.2, // Higher = smoother/slower
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false, // Keep native touch feeling on mobile
+                touchMultiplier: 2,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Connect Lenis to your Anchor Links for smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    lenis.scrollTo(this.getAttribute('href'));
+                });
+            });
+
+            // --- 1. CUSTOM CURSOR ---
+            const cursor = document.getElementById('cursor');
+            const interactives = document.querySelectorAll('.interactive, a, button');
+
+            if (window.matchMedia("(pointer: fine)").matches) {
+                document.addEventListener('mousemove', (e) => {
+                    requestAnimationFrame(() => {
+                        cursor.style.left = e.clientX + 'px';
+                        cursor.style.top = e.clientY + 'px';
+                    });
+                });
+
+                interactives.forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+                });
+            }
+
+            // --- 2. STICKY NAV & SCROLL EFFECTS ---
+            const navbar = document.getElementById('navbar');
+            const heroBg = document.getElementById('heroBg');
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                if (scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+
+                // Parallax Effect
+                if (scrollY < window.innerHeight) {
+                    heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+                }
+
+                // Active Link Highlighter
+                const sections = document.querySelectorAll('section');
+                sections.forEach(sec => {
+                    const top = window.scrollY;
+                    const offset = sec.offsetTop - 100;
+                    const height = sec.offsetHeight;
+                    const id = sec.getAttribute('id');
+
+                    if (top >= offset && top < offset + height) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').includes(id)) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // --- 3. MOBILE MENU ---
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('mobile-open');
+                menuToggle.textContent = navMenu.classList.contains('mobile-open') ? '✕' : '☰';
+            });
+
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.addEventListener('click', () => {
+                    navMenu.classList.remove('mobile-open');
+                    menuToggle.textContent = '☰';
+                });
+            });
+
+            // --- 4. LIGHTBOX ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const galleryItems = document.querySelectorAll('.gallery-item img');
+
+            galleryItems.forEach(img => {
+                img.addEventListener('click', () => {
+                    const fullSrc = img.getAttribute('data-full');
+                    lightboxImg.src = fullSrc;
+                    lightbox.classList.add('active');
+                    // Stop Lenis scroll when lightbox is open
+                    lenis.stop();
+                    closeBtn.focus();
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+                // Resume Lenis scroll
+                lenis.start();
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+            });
+
+            // --- 5. TESTIMONIALS SLIDER ---
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            const showSlide = (index) => {
+                slides.forEach((s, i) => s.classList.remove('active'));
+                slides[index].classList.add('active');
+            };
+
+            const nextSlide = () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            };
+
+            const prevSlide = () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            };
+
+            if (slides.length > 0) {
+                nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+                prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+                const startAutoplay = () => { slideInterval = setInterval(nextSlide, 5000); };
+                const resetAutoplay = () => { clearInterval(slideInterval); startAutoplay(); };
+
+                startAutoplay();
+                const sliderContainer = document.getElementById('testimonialSlider');
+                sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                sliderContainer.addEventListener('mouseleave', startAutoplay);
+            }
+
+            // --- 6. ANIMATE ACHIEVEMENTS/SKILLS ---
+            const observerOptions = { threshold: 0.2 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.skill-item, .achievement-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // --- 7. SCATTER GALLERY HORIZONTAL SCROLL ---
+            const scrollGalleries = document.querySelectorAll('.scatter-gallery');
+
+            scrollGalleries.forEach(gallery => {
+                const wrapper = gallery.closest('.scatter-wrapper');
+                if (!wrapper) return;
+
+                const leftArrow = wrapper.querySelector('.scroll-indicator.left');
+                const rightArrow = wrapper.querySelector('.scroll-indicator.right');
+
+                const updateArrows = () => {
+                    const scrollLeft = gallery.scrollLeft;
+                    const scrollWidth = gallery.scrollWidth;
+                    const clientWidth = gallery.clientWidth;
+                    const maxScroll = scrollWidth - clientWidth;
+
+                    if (scrollLeft > 2) leftArrow.classList.remove('hidden');
+                    else leftArrow.classList.add('hidden');
+
+                    if (scrollLeft < maxScroll - 2) rightArrow.classList.remove('hidden');
+                    else rightArrow.classList.add('hidden');
+                };
+
+                // Add data-lenis-prevent to horizontal gallery so it doesn't conflict
+                gallery.setAttribute('data-lenis-prevent', '');
+
+                leftArrow.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    gallery.scrollBy({ left: -200, behavior: 'smooth' });
+                });
+
+                rightArrow.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    gallery.scrollBy({ left: 200, behavior: 'smooth' });
+                });
+
+                gallery.addEventListener('scroll', updateArrows);
+                window.addEventListener('resize', updateArrows);
+                setTimeout(updateArrows, 100);
+            });
+
+            // --- 8. TYPEWRITER EFFECT ---
+            class TypeWriter {
+                constructor(txtElement, words, wait = 3000) {
+                    this.txtElement = txtElement;
+                    this.words = words;
+                    this.txt = '';
+                    this.wordIndex = 0;
+                    this.wait = parseInt(wait, 10);
+                    this.type();
+                    this.isDeleting = false;
+                }
+                type() {
+                    const current = this.wordIndex % this.words.length;
+                    const fullTxt = this.words[current];
+                    if (this.isDeleting) {
+                        this.txt = fullTxt.substring(0, this.txt.length - 1);
+                    } else {
+                        this.txt = fullTxt.substring(0, this.txt.length + 1);
+                    }
+                    this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+                    let typeSpeed = 200;
+                    if (this.isDeleting) { typeSpeed /= 2; }
+                    if (!this.isDeleting && this.txt === fullTxt) {
+                        typeSpeed = this.wait;
+                        this.isDeleting = true;
+                    } else if (this.isDeleting && this.txt === '') {
+                        this.isDeleting = false;
+                        this.wordIndex++;
+                        typeSpeed = 500;
+                    }
+                    setTimeout(() => this.type(), typeSpeed);
+                }
+            }
+
+            const txtElement = document.querySelector('.txt-type');
+            if (txtElement) {
+                const words = JSON.parse(txtElement.getAttribute('data-words'));
+                const wait = txtElement.getAttribute('data-wait');
+                new TypeWriter(txtElement, words, wait);
+            }
         });
     </script>
 </body>
